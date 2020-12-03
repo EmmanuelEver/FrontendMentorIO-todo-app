@@ -1,0 +1,206 @@
+:root{
+	font-size: 18px;
+	--bg:hsl(235, 21%, 11%);
+	--elements:hsl(235, 24%, 19%);
+	--bgImage:url(../images/bg-desktop-dark.jpg);
+	--textColor:hsl(234, 39%, 85%);
+	--borderColor:hsl(237, 14%, 26%);
+	--actionText:hsl(234, 11%, 52%);
+	--checkedColor:hsl(234, 11%, 52%);
+
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.app{
+	height: 100vh;
+	width: 100%;
+	background: var(--bg);
+	background-image: var(--bgImage);
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: 100% 40%;
+	padding-top: 12vh;
+}
+
+.container{
+	margin:0 auto;
+	max-width: 500px;
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 25px;
+}
+.header h1{
+	color: white;
+	letter-spacing: 10px;
+}
+.header img{
+	height: 25px;
+	cursor: pointer;
+}
+.input{
+	padding: 17px 10px;
+	background: var(--elements);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+.input input{
+	border: none;
+	background: transparent;
+	outline-width: 0;
+	color: var(--textColor);
+	width: 100%;
+}
+.flat-icon{
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background-image:transparent;
+	border: 1px solid var(--borderColor);
+	margin-right: 20px;
+
+}
+.flat-icon:hover{
+	border: 1px solid hsl(192,100%,67%);
+}
+
+.flat-icon.check{
+	position: relative;
+	border: 1px solid hsl(192,100%,67%);
+	background: linear-gradient(90deg,hsl(192,100%,67%) 0%, hsl(280,87%,65%) 80%);
+	background: -webkit-linear-gradient(90deg,hsl(192,100%,67%) 0%, hsl(280,87%,65%) 80%);
+	background: -moz-linear-gradient(90deg,hsl(192,100%,67%) 0%, hsl(280,87%,65%) 80%);
+}
+.check:before{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background-image: url(../images/icon-check.svg);
+	background-position: center center;
+	background-size: contain;
+}
+.tasks{
+	background: var(--elements);
+	height: auto;
+	width: 100%;
+	position: relative;
+}
+
+.tasks-container{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	border-radius: 5px;
+	max-height: 45vh;
+	overflow-y: auto;
+}
+
+.task{
+	position: relative;
+	padding: 17px 10px;
+	border: 1px solid var(--borderColor);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	transition: all .1s ease-in-out;
+	cursor: pointer;
+}
+.task:hover .close-task{
+	opacity: 1;
+}
+
+.task.dragging{
+	opacity: .2;
+}
+.task p{
+	color: var(--textColor);
+	font-size: .8rem;
+}
+.task p.checked{
+	text-decoration: line-through hsl(233, 14%, 26%);
+	color: var(--checkedColor);
+}
+.close-task{
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	transform: translateY(-50%);
+	opacity: 0;
+}
+
+.tasks-actions{
+	padding: 17px 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--checkedColor);
+	width: 100%;
+}
+.tasks-actions ul{
+	display: flex;
+	align-items: center;
+	list-style: none;
+	font-size: small;
+}
+.tasks-actions ul li{
+	padding: 0 7px;
+	font-size: small;
+	cursor: pointer;
+	color: var(--actionText);
+	font-weight: bold;
+}
+.tasks-actions ul li:hover{
+	color: var(--textColor);
+}
+.tasks-actions ul li.active{
+	color: #007eff;
+}
+.tasks-actions span{
+	font-size: small;
+	cursor: pointer;
+}
+.tip{
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	color: var(--checkedColor);
+	font-size: small;
+	text-align: center;
+	width: 100%;
+}
+
+@media screen and (max-width: 600px){
+	.app{
+		background-size: 100% 30%;
+		padding: 12vh 5% 0 5%;
+	}
+	.tasks-actions ul{
+		bottom: -60px;
+		left: 0;
+		width: 100%;
+		position: absolute;
+		padding: 17px 10px;
+		justify-content: center;
+		border-radius: 5px;
+		background: var(--elements);
+	}
+}
